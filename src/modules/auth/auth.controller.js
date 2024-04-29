@@ -22,17 +22,17 @@ export const signup = async(req,res)=>{
     const refreshToken = await jwt.sign({email},process.env.CONFIRMEMAILTOKEN,
         {expiresIn:60*60*24*30});
 
-    // const html = `
-    // <h1>Saraha</h1>
-    // <h2>Welcome ${userName}</h2>
-    // <div>
-    // <a href='${req.protocol}://${req.headers.host}/auth/confirmEmail/${token}'>Confiem Email</a>
-    // <a href='${req.protocol}://${req.headers.host}/auth/confirmEmail/${refreshToken}'>Resend Confiem Email</a>
+    const html = `
+    <h1>Saraha</h1>
+    <h2>Welcome ${userName}</h2>
+    <div>
+    <a href='${req.protocol}://${req.headers.host}/auth/confirmEmail/${token}'>Confiem Email</a>
+    <a href='${req.protocol}://${req.headers.host}/auth/confirmEmail/${refreshToken}'>Resend Confiem Email</a>
 
-    // </div>
+    </div>
    
-    // `;
-    // await SendEmail(email,'welcom message',html);
+    `;
+    await SendEmail(email,'welcom message',html);
 
     return res.status(201).json({message:"success creating user",newUser});
 };
